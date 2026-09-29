@@ -1,0 +1,13 @@
+# Local deployment packages
+site-release.zip
+
+# Dependencies and local configuration
+node_modules/
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.vscode/
