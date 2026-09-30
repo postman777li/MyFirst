@@ -7,7 +7,9 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateGrowthEntryDto } from './dto/create-growth-entry.dto';
 import { UpdateGrowthEntryDto } from './dto/update-growth-entry.dto';
 import { GrowthService } from './growth.service';
@@ -27,16 +29,19 @@ export class GrowthController {
   }
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   create(@Body() input: CreateGrowthEntryDto) {
     return this.growthService.create(input);
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
   update(@Param('id') id: string, @Body() input: UpdateGrowthEntryDto) {
     return this.growthService.update(id, input);
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   @HttpCode(204)
   remove(@Param('id') id: string) {
     return this.growthService.remove(id);
