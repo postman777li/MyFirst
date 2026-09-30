@@ -3,6 +3,8 @@ site-release.zip
 
 # Dependencies and local configuration
 node_modules/
+dist/
+.cache/
 .env
 .env.*
 !.env.example

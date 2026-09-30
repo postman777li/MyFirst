@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum PublishStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  displayName  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model GrowthEntry {
+  id         String        @id @default(cuid())
+  title      String
+  summary    String        @db.Text
+  happenedAt DateTime
+  status     PublishStatus @default(DRAFT)
+  sortOrder  Int           @default(0)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+}
+
+model Photo {
+  id          String        @id @default(cuid())
+  title       String
+  description String?       @db.Text
+  objectKey   String        @unique
+  takenAt     DateTime?
+  status      PublishStatus @default(DRAFT)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Project {
+  id        String        @id @default(cuid())
+  slug      String        @unique
+  title     String
+  summary   String        @db.Text
+  content   String        @db.LongText
+  sourceUrl String?
+  demoUrl   String?
+  status    PublishStatus @default(DRAFT)
+  startedAt DateTime?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
