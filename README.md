@@ -21,3 +21,13 @@
 前端：http://localhost:5173  
 API：http://localhost:3000/api/health  
 数据库管理：http://localhost:8080
+
+Adminer 本地连接参数：
+
+- 系统：MySQL
+- 服务器：`mysql`
+- 用户名：`myfirst`
+- 密码：`local_dev_password`
+- 数据库：`myfirst`
+
+宿主机连接 MySQL 时使用端口 `3307`；容器之间通信仍使用标准端口 `3306`。
